@@ -1,8 +1,9 @@
 {
-  "name": "react-beautiful-dnd",
-  "version": "13.1.1",
+  "name": "@erom/react-beautiful-dnd",
+  "version": "13.1.2",
   "description": "Beautiful and accessible drag and drop for lists with React",
   "author": "Alex Reardon <areardon@atlassian.com>",
+  "contributors": ["Erom Agency <dev@eromagency.com>"],
   "keywords": [
     "drag and drop",
     "dnd",
@@ -17,10 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/atlassian/react-beautiful-dnd.git"
-  },
-  "bugs": {
-    "url": "https://github.com/atlassian/react-beautiful-dnd/issues"
+    "url": "https://github.com/EromAgency/react-beautiful-dnd.git"
   },
   "main": "dist/react-beautiful-dnd.cjs.js",
   "module": "dist/react-beautiful-dnd.esm.js",
