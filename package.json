@@ -1,6 +1,6 @@
 {
   "name": "@erom/react-beautiful-dnd",
-  "version": "13.1.3",
+  "version": "13.1.4",
   "description": "Beautiful and accessible drag and drop for lists with React",
   "author": "Alex Reardon <areardon@atlassian.com>",
   "contributors": ["Erom Agency <dev@eromagency.com>"],
