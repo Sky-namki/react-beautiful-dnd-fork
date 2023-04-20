@@ -1,3 +1,5 @@
+1. yarn
+2. yarn build
 
 ## ⚠️ Maintenance & support
 
