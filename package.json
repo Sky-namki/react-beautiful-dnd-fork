@@ -27,8 +27,10 @@
   "sideEffects": false,
   "files": [
     "/dist",
-    "/src"
+    "/src",
+    "/types.d.ts"
   ],
+  "types": "types.d.ts",
   "config": {
     "prettier_target": "*.{js,jsx,md,json} src/**/*.{js,jsx,md,json} test/**/*.{js,jsx,md,json} docs/**/*.{js,jsx,md,json} stories/**/*.{js,jsx,md,json} cypress/**/*.{js,jsx,md,json} csp-server/**/*.{js,jsx,md,json}"
   },
@@ -49,7 +51,7 @@
     "bundle-size:update": "yarn build:clean && yarn build:dist && yarn build:clean",
     "build": "yarn build:clean && yarn build:dist && yarn build:flow",
     "build:clean": "rimraf dist",
-    "build:dist": "rollup -c",
+    "build:dist": "env NODE_OPTIONS=--openssl-legacy-provider rollup -c",
     "build:flow": "echo \"// @flow\n\nexport * from '../src';\" > dist/react-beautiful-dnd.cjs.js.flow",
     "storybook": "start-storybook -p 9002",
     "build-storybook": "build-storybook -c .storybook -o site",

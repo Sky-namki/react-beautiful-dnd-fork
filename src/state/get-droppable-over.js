@@ -54,6 +54,15 @@ function getFurthestAway({
 
   const startCenter: Position = draggable.page.borderBox.center;
   const sorted: WithDistance[] = candidates
+    .filter((candidate: DroppableDimension): boolean => {
+      // Exclude the droppables that don't intersect the center of draggable.
+      // Add extra space to droppable edges to prevent glitches
+      const extraOuterSpace = 30;
+      return (
+        pageBorderBox.center.y > candidate.page.borderBox.y - extraOuterSpace &&
+        pageBorderBox.center.y < candidate.page.borderBox.bottom + extraOuterSpace
+      );
+    })
     .map((candidate: DroppableDimension): WithDistance => {
       const axis: Axis = candidate.axis;
       const target: Position = patch(
