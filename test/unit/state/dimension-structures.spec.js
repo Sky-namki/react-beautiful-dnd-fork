@@ -4,7 +4,8 @@ import {
   toDraggableMap,
   toDroppableMap,
   toDroppableList,
-} from '../../../src/state/dimension-structures';
+  compareDroppables, CompareDroppableType
+} from "../../../src/state/dimension-structures";
 import { getPreset } from '../../util/dimension';
 import type {
   DraggableDimension,
@@ -41,5 +42,26 @@ it('should convert a draggable map to a list', () => {
 });
 
 it('should convert a droppable map to a list', () => {
-  expect(toDroppableList(droppableMap)).toEqual(droppables);
+  expect(toDroppableList(droppableMap)).toEqual([...droppables].reverse());
+});
+
+describe('compareDroppables', () => {
+  it('should do nothing with empty array', () => {
+    expect([].sort(compareDroppables)).toEqual([]);
+  });
+  it('should reorder descending by `left` and ascending by `top`', () => {
+    const droppables: CompareDroppableType[] = [
+      { page: { contentBox: { left: 30, top: 30 } } },
+      { page: { contentBox: { left: 10, top: 10 } } },
+      { page: { contentBox: { left: 20, top: 30 } } },
+      { page: { contentBox: { left: 30, top: 20 } } },
+    ];
+    const expectedDroppables: CompareDroppableType[] = [
+      { page: { contentBox: { left: 30, top: 20 } } },
+      { page: { contentBox: { left: 30, top: 30 } } },
+      { page: { contentBox: { left: 20, top: 30 } } },
+      { page: { contentBox: { left: 10, top: 10 } } },
+    ];
+    expect(droppables.sort(compareDroppables)).toEqual(expectedDroppables);
+  });
 });
