@@ -76,10 +76,18 @@ function getFurthestAway({
       return {
         id: candidate.descriptor.id,
         distance: distance(startCenter, target),
+        box: candidate.page.borderBox,
       };
     })
+    //Droppableがもう一方のDroppableを内包している場合は内包されているDroppableを優先
+    .sort((a: WithDistance, b: WithDistance) => {
+      if (a.box.left < b.box.left && b.box.right < a.box.right) return 1
+      if (b.box.left < a.box.left && a.box.right < b.box.right) return -1
+
+      return b.distance - a.distance
+    })
     // largest value will be first
-    .sort((a: WithDistance, b: WithDistance) => b.distance - a.distance);
+    //.sort((a: WithDistance, b: WithDistance) => b.distance - a.distance);
 
   // just being safe
   return sorted[0] ? sorted[0].id : null;
